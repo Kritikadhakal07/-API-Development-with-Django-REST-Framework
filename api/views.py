@@ -118,7 +118,7 @@ from rest_framework import generics,mixins
 #         employee.delete()
 #         return Response(status=status.HTTP_204_NO_CONTENT)
     
-
+"""
 class Employees(mixins.ListModelMixin,mixins.CreateModelMixin,generics.GenericAPIView):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
@@ -141,3 +141,23 @@ class EmployeeDetail(mixins.RetrieveModelMixin,mixins.UpdateModelMixin,mixins.De
     
     def delete(self,request,pk):
         return self.destroy(request,pk)
+"""
+
+# Generic Class Based Views
+
+# class Employees(generics.ListAPIView,generics.CreateAPIView):
+class Employees(generics.ListCreateAPIView):
+
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+
+
+
+
+
+# Generic Class Based Views
+class EmployeeDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Employee.objects.all()
+    serializer_class = EmployeeSerializer
+    # Based on the primary key we want to get the details 
+    lookup_field = 'pk'
