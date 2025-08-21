@@ -1,5 +1,9 @@
-from django.urls import path
+from django.urls import path,include
 from . import views
+from rest_framework.routers import DefaultRouter
+
+router = DefaultRouter()
+router.register('employees',views.EmployeeViewSet, basename='employees')
 
 urlpatterns=[
     #function base views
@@ -8,6 +12,9 @@ urlpatterns=[
 
 
     #Class Based Views
-    path('employees/', views.Employees.as_view(),name='employees'),
- path('employees/<int:pk>',views.EmployeeDetail.as_view(),name='employee-detail'),
+#     path('employees/', views.Employees.as_view(),name='employees'),
+#  path('employees/<int:pk>',views.EmployeeDetail.as_view(),name='employee-detail'),
+
+path('',include(router.urls))
+
 ]

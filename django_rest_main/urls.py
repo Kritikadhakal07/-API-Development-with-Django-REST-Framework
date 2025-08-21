@@ -23,7 +23,12 @@ urlpatterns = [
     path('students/',include('students.urls')),
 
     #API Endpoint
-    path('api/v1/',include('api.urls'))
+    path('api/v1/',include('api.urls')),
+
+
+    path('entrance/',include('entrance.urls')),
+
+    path('',include('myform.urls'))
     
 
 ]
